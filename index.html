@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thirsty Slime</title>
+    <script type="text/javascript" src="levels.js" defer></script>
+    <script type="text/javascript" src="index.js" defer></script>
+</head>
+
+<body>
+    <canvas id="gameboard"></canvas>
+
+    <img src="./Sprites/wall_bottom.png" alt="wall" id="wall_bottom" style="display:none;" />
+    <img src="./Sprites/wall_roof.png" alt="wall" id="wall_roof" style="display:none;" />
+    <img src="./Sprites/wall_side.png" alt="wall" id="wall_side" style="display:none;" />
+    <img src="./Sprites/wall_top.png" alt="wall" id="wall_top" style="display:none;" />
+    <img src="./Sprites/water.png" alt="wall" id="goal" style="display:none;" />
+    <img src="./Sprites/character.png" alt="wall" id="character" style="display:none;" />
+    <img src="./Sprites/biggrass.png" alt="wall" id="grass" style="display:none;" />
+
+    <style>
+        #gameboard {
+            width: 80rem;
+            height: 40rem;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-repeat: repeat;
+        }
+
+#gameboard {
+            width: 100vw;
+            height: 50vw;
+        }
+
+        @media (min-aspect-ratio: 2/1) {
+            #gameboard {
+                width: 200vh;
+                height: 100vh;
+            }
+        }
+
+        body {
+            background-color: aqua;
+        }
+    </style>
+</body>
+
+</html>
