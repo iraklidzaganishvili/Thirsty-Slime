@@ -190,7 +190,7 @@ let FrameTimeMs;
 
 let delagger = 0;
 setInterval(() => {
-    console.clear();
+    // console.clear();
     console.table({
         FPS: fpscounter,
         Choose_Level: 'window.level(Level)'
@@ -276,6 +276,7 @@ let bordcord = {
 };
 var HitNextLVLOnce = true;
 function checkCollision() {
+    console.log(player.y);
     bordcord.minXMinY =
         Math.floor(player.y / game.blocklength) * game.w + Math.floor(player.x / game.blocklength);
     bordcord.minXMaxY =
