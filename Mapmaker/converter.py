@@ -6,8 +6,8 @@ width = 80
 height = 40
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
-image_path = os.path.join(script_dir, 'map1.png')
-out_path = os.path.join(script_dir, 'map1.txt')
+image_path = os.path.join(script_dir, 'lvl2.png')
+out_path = os.path.join(script_dir, 'lvl2.txt')
 img = Image.open(image_path).convert('L')  # Convert image to grayscale
 array = np.array(img).astype(np.int32) # Convert image data to a numpy array
 

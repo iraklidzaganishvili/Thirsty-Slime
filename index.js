@@ -276,7 +276,6 @@ let bordcord = {
 };
 var HitNextLVLOnce = true;
 function checkCollision() {
-    console.log(player.y);
     bordcord.minXMinY =
         Math.floor(player.y / game.blocklength) * game.w + Math.floor(player.x / game.blocklength);
     bordcord.minXMaxY =
