@@ -1,7 +1,29 @@
 allblocks = allblocks.map((element) =>
     element.map((innerArray) => innerArray.map((coord) => coord[1] * game.w + coord[0]))
 );
-mapgen = allmaps[level];
+alldoors = alldoors.map((element) =>
+    element.map((innerArray) => innerArray.map((coord) => coord[1] * game.w + coord[0]))
+);
+
+// Adds doors to mapgen
+for (var lvl = 0; lvl < allmaps.length; lvl++) {
+    for (var doorcount = 0; doorcount < alldoors[lvl].length; doorcount++) {
+        for (var doorindex = 0; doorindex < alldoors[lvl][doorcount].length; doorindex++) {
+            if (doorindex > 0){
+                allmaps[lvl][alldoors[lvl][doorcount][doorindex]] = 2;
+            }
+            else{
+                allmaps[lvl][alldoors[lvl][doorcount][doorindex]] = -3;
+            }
+        }
+    }
+}
+
+mapgen = [...allmaps[level]];
+blockgen = allblocks[level];
+addpropgen = addallblocks[level];
+doorgen = alldoors[level];
+
 // ctx.scale(32, 32);
 for (var y = 0; y < game.h; y++) {
     for (var x = 0; x < game.w; x++) {
@@ -19,9 +41,6 @@ function drawMap() {
         game.w * game.blocklength,
         game.h * game.blocklength
     );
-    mapgen = allmaps[level];
-    blockgen = allblocks[level];
-    addpropgen = addallblocks[level];
     for (var y = 0; y < game.h; y++) {
         for (var x = 0; x < game.w; x++) {
             switch (mapgen[y * game.w + x]) {
@@ -70,6 +89,15 @@ function drawMap() {
                         );
                     }
                     break;
+                case 2:
+                    ctx.fillStyle = "red";
+                    ctx.fillRect(
+                        x * game.blocklength,
+                        y * game.blocklength,
+                        game.blocklength,
+                        game.blocklength
+                    );
+                    break;
                 case -1:
                     spawn = { x: x * game.blocklength, y: y * game.blocklength };
                     break;
@@ -77,6 +105,33 @@ function drawMap() {
                     ctx.fillStyle = 'blue';
                     ctx.drawImage(
                         document.getElementById('goal'),
+                        x * game.blocklength,
+                        y * game.blocklength,
+                        game.blocklength,
+                        game.blocklength
+                    );
+                    break;
+                case -3:
+                    ctx.fillStyle = "green";
+                    ctx.fillRect(
+                        x * game.blocklength,
+                        y * game.blocklength,
+                        game.blocklength,
+                        game.blocklength
+                    );
+                    break;
+                case -4:
+                    ctx.fillStyle = "gray";
+                    ctx.fillRect(
+                        x * game.blocklength,
+                        y * game.blocklength,
+                        game.blocklength,
+                        game.blocklength
+                    );
+                    break;
+                case -5:
+                    ctx.fillStyle = "darkgreen";
+                    ctx.fillRect(
                         x * game.blocklength,
                         y * game.blocklength,
                         game.blocklength,
@@ -94,5 +149,8 @@ function nextlevel(level) {
     posInMovesetArray = [];
     smoother = [];
     exactBlockPosition = [];
+    mapgen = [...allmaps[level]];
+    blockgen = allblocks[level];
+    addpropgen = addallblocks[level];
+    doorgen = alldoors[level];
 }
-window.level = nextlevel;

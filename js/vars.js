@@ -4,6 +4,8 @@ let mapgen;
 let blockgen;
 let addpropgen;
 let spawn;
+let doorgen;
+let alldoorsnum = 0;
 
 //Moving block
 let posInMovesetArray = [];

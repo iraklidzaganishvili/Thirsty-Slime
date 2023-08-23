@@ -20,13 +20,14 @@ let player = {
 
 //spawn
 function spawnplayer() {
-    ctx.fillStyle = player.color;
+    // ctx.fillStyle = player.color;
     ctx.drawImage(characterImage, spawn.x, spawn.y, player.size, player.size);
     ctx.clearRect(player.x, player.y, player.size, player.size);
     player.x = spawn.x;
     player.y = spawn.y;
     drawMap();
     keys = { w: false, a: false, s: false, d: false };
+    mapgen = [...allmaps[level]];
 }
 
 //movement
@@ -47,7 +48,7 @@ function animatecharacter() {
         player.x = player.x + player.move * deltatime;
         player.x = Math.round(player.x);
     }
-    ctx.fillStyle = player.color;
+    // ctx.fillStyle = player.color;
     ctx.drawImage(characterImage, player.x, player.y, player.size, player.size);
     // player.exactPosition = (player.x+player.y*game.w)/game.blocklength;
 }
@@ -63,16 +64,29 @@ function checkCollision() {
         Math.ceil(player.y / game.blocklength) * game.w + Math.floor(player.x / game.blocklength);
     bordcord.maXXmaxY =
         Math.ceil(player.y / game.blocklength) * game.w + Math.ceil(player.x / game.blocklength);
+
     for (let element in bordcord) {
-        if (mapgen[bordcord[element]] == 1) {
+
+        if(mapgen[bordcord[element]] == -3){
+            for(var i = 0; i < doorgen.length; i++){
+                if(doorgen[i][0] == bordcord[element]){
+                    for(var m = 1; m < doorgen[i].length; m++){
+                        mapgen[doorgen[i][m]] = -4;
+                    }
+                    mapgen[doorgen[i][0]] = -5;
+                }
+            }
+        }
+
+        if (mapgen[bordcord[element]] > 0) {
             spawnplayer();
-        } else {
-            if (mapgen[bordcord[element]] == -2 && HitNextLVLOnce == true) {
+        }
+
+        if (mapgen[bordcord[element]] == -2 && HitNextLVLOnce == true) {
                 HitNextLVLOnce = false;
                 level = level + 1;
                 nextlevel(level);
                 spawnplayer();
-            }
         }
     }
     HitNextLVLOnce = true;
