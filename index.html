@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thirsty Slime</title>
+    <link rel="stylesheet" href="mainPage.css">
     <script type="text/javascript" src="js/levels.js" defer></script>
     <script type="text/javascript" src="js/vars.js" defer></script>
     <script type="text/javascript" src="js/css.js" defer></script>
@@ -13,18 +14,31 @@
     <script type="text/javascript" src="js/gameloop.js" defer></script>
     <script type="text/javascript" src="js/movingblock.js" defer></script>
     <script type="text/javascript" src="js/index.js" defer></script>
+    <script type="text/javascript" src="js/selectmap.js" defer></script>
 </head>
 
 <body>
-    <canvas id="gameboard"></canvas>
 
-    <img src="./Sprites/wall_bottom.png" alt="wall" id="wall_bottom" style="display:none;" />
-    <img src="./Sprites/wall_roof.png" alt="wall" id="wall_roof" style="display:none;" />
-    <img src="./Sprites/wall_side.png" alt="wall" id="wall_side" style="display:none;" />
-    <img src="./Sprites/wall_top.png" alt="wall" id="wall_top" style="display:none;" />
-    <img src="./Sprites/water.png" alt="wall" id="goal" style="display:none;" />
-    <img src="./Sprites/character.png" alt="wall" id="character" style="display:none;" />
-    <img src="./Sprites/biggrass.png" alt="wall" id="grass" style="display:none;" />
+    <section id="mainpage">
+        <button onclick="nextlevel(0); document.getElementById('gameboard').style.opacity=1; closeFullMenu(); document.getElementsByTagName('body')[0].style.overflow = 'visible'" class="custom-btn" id="lvlScreenBTN">Play</button>
+        <button onclick="document.getElementById('lvlpage').style.display = 'flex'" class="custom-btn" id="lvlScreenBTN">Levels</button>
+        <div id="lvlpage">
+            <img id="settclose" src="Sprites/fancy_close.png" onclick="closeLVLMenu()"></img>
+            <h1 id="chooselvl">Choose Level:</h1>
+        </div>
+    </section>
+
+    <section>
+        <canvas id="gameboard"></canvas>
+
+        <img src="./Sprites/wall_bottom.png" alt="wall" id="wall_bottom" style="display:none;" />
+        <img src="./Sprites/wall_roof.png" alt="wall" id="wall_roof" style="display:none;" />
+        <img src="./Sprites/wall_side.png" alt="wall" id="wall_side" style="display:none;" />
+        <img src="./Sprites/wall_top.png" alt="wall" id="wall_top" style="display:none;" />
+        <img src="./Sprites/water.png" alt="wall" id="goal" style="display:none;" />
+        <img src="./Sprites/character.png" alt="wall" id="character" style="display:none;" />
+        <img src="./Sprites/biggrass.png" alt="wall" id="grass" style="display:none;" />
+    </section>
 
     <style>
         #gameboard {
@@ -35,24 +49,10 @@
             top: 50%;
             transform: translate(-50%, -50%);
             background-repeat: repeat;
-        }
-
-/* #gameboard {
-            width: 100vw;
-            height: 50vw;
-        }
-
-        @media (min-aspect-ratio: 2/1) {
-            #gameboard {
-                width: 200vh;
-                height: 100vh;
-            }
-        } */
-
-        body {
-            background-color: aqua;
+            z-index: -1;
         }
     </style>
+
 </body>
 
 </html>

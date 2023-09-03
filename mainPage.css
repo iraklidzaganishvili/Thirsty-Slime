@@ -1,0 +1,108 @@
+* {
+    margin: 0px;
+    font-family: "Open Sans Condensed", sans-serif;
+    font-weight: 700;
+}
+
+
+#lvlpage {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #00717f;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+#settclose {
+    position: absolute;
+    display: inline;
+    vertical-align: middle;
+    top: 4px;
+    right: 4px;
+    width: 2vw;
+    height: auto;
+    z-index: 100;
+}
+
+body {
+    overflow: hidden;
+    background-color: #00ffff;
+}
+
+canvas {
+    opacity: 0;
+    position: absolute;
+}
+
+.custom-btn {
+    border: none;
+    margin: 1rem;
+    width: 10rem;
+    height: 10rem;
+    font-size: 5rem;
+    border-radius: 1rem;
+    background: #EFD372;
+    box-shadow: 0.4vw 0.5vw #888888;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: #274C5B;
+}
+
+.custom-btn:hover {
+    transition: all 0.05s linear;
+    background-color: #f7d05b;
+}
+
+.custom-btn:active {
+    position: relative;
+    top: 0.5vw;
+    transition: all 0.05s linear;
+    box-shadow: none;
+}
+
+#lvlScreenBTN {
+    background-color: #274C5B;
+    color: white;
+    margin: 3rem;
+    width: 30rem;
+    height: 9rem;
+    font-size: 4rem;
+}
+
+#lvlScreenBTN:hover {
+    background-color: #18313b;
+}
+
+#mainpage {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+html,
+body,
+#mainpage {
+    height: 100%;
+}
+
+#chooselvl {
+    font-size: 5rem;
+    color: #f7d05b;
+    position: absolute;
+    top: 3rem;
+    text-shadow: 0 0 3px #f7d05b;
+}
+

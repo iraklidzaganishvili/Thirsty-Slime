@@ -102,7 +102,6 @@ function drawMap() {
                     spawn = { x: x * game.blocklength, y: y * game.blocklength };
                     break;
                 case -2:
-                    ctx.fillStyle = 'blue';
                     ctx.drawImage(
                         document.getElementById('goal'),
                         x * game.blocklength,
@@ -143,14 +142,15 @@ function drawMap() {
     }
 }
 drawMap();
-function nextlevel(level) {
-    console.log('level:' + level);
+function nextlevel(lvl) {
+    console.log('level:' + lvl);
     spawnplayer();
     posInMovesetArray = [];
     smoother = [];
     exactBlockPosition = [];
-    mapgen = [...allmaps[level]];
-    blockgen = allblocks[level];
-    addpropgen = addallblocks[level];
-    doorgen = alldoors[level];
+    mapgen = [...allmaps[lvl]];
+    blockgen = allblocks[lvl];
+    addpropgen = addallblocks[lvl];
+    doorgen = alldoors[lvl];
+    level = lvl;
 }
