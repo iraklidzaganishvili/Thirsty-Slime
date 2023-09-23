@@ -1,9 +1,13 @@
 document.addEventListener("keydown", function (event) {
-    keys[event.key] = true;
+    if (keys.hasOwnProperty(event.key)) {
+        keys[event.key] = true;
+    }
 });
 
 document.addEventListener("keyup", function (event) {
-    keys[event.key] = false;
+    if (keys.hasOwnProperty(event.key)) {
+        keys[event.key] = false;
+    }
 });
 
 // player
@@ -67,10 +71,10 @@ function checkCollision() {
 
     for (let element in bordcord) {
 
-        if(mapgen[bordcord[element]] == -3){
-            for(var i = 0; i < doorgen.length; i++){
-                if(doorgen[i][0] == bordcord[element]){
-                    for(var m = 1; m < doorgen[i].length; m++){
+        if (mapgen[bordcord[element]] == -3) {
+            for (var i = 0; i < doorgen.length; i++) {
+                if (doorgen[i][0] == bordcord[element]) {
+                    for (var m = 1; m < doorgen[i].length; m++) {
                         mapgen[doorgen[i][m]] = -4;
                     }
                     mapgen[doorgen[i][0]] = -5;
@@ -83,10 +87,10 @@ function checkCollision() {
         }
 
         if (mapgen[bordcord[element]] == -2 && HitNextLVLOnce == true) {
-                HitNextLVLOnce = false;
-                level = level + 1;
-                nextlevel(level);
-                spawnplayer();
+            HitNextLVLOnce = false;
+            level = level + 1;
+            nextlevel(level);
+            spawnplayer();
         }
     }
     HitNextLVLOnce = true;
