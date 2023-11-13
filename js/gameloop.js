@@ -19,7 +19,6 @@ function gameloop() {
         then = now - (delta % interval);
 
         //Actual game loop
-
         // Camera
         if (player.x * 4 * dim <= size.width * 3.5 * dim && player.x * 4 * dim >= size.width / 2 * dim) {
             transformX = -player.x * 4 * dim + size.width / 2 * dim;
@@ -31,7 +30,6 @@ function gameloop() {
         drawMap();
 
         //Moving block
-        if(player.exactPosition - game.h/2*game.w);
         blockgen.forEach((element, index) => {
             drawMovingBlock(
                 blockgen[index][posInMovesetArray[index]], //blockpos
@@ -42,6 +40,7 @@ function gameloop() {
                 Math.round(fps / addpropgen[index].speed) //blockSpeed
             );
         });
+        chase(2, 0.9, 1.5);
         animatecharacter();
         checkCollision();
     }

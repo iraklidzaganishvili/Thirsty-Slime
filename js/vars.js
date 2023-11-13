@@ -12,6 +12,9 @@ let posInMovesetArray = [];
 let smoother = [];
 let exactBlockPosition = [];
 
+//Chase
+let chasePos = 0
+
 //Keys
 let keys = {
     w: false,

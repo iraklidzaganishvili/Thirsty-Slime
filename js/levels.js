@@ -21,7 +21,7 @@ var allblocks = [
         // [[1, 22], [1, 32], [21, 22]],
     ],
     [
-
+        [[3,0],[4,0],[3,0]],
     ],
 ];
 var addallblocks = [
@@ -33,7 +33,7 @@ var addallblocks = [
 
     ],
     [
-
+        { color: "red", speed: 8 },
     ]
 ];
 var alldoors = [
@@ -45,6 +45,6 @@ var alldoors = [
         [[1,0],[2,0]],
     ],
     [
-        [[1,0],[1,0]],
+        [[2,0],[1,0]],
     ],
 ]

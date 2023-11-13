@@ -1,3 +1,4 @@
+let m
 document.addEventListener("keydown", function (event) {
     if (keys.hasOwnProperty(event.key)) {
         keys[event.key] = true;
@@ -8,6 +9,7 @@ document.addEventListener("keyup", function (event) {
     if (keys.hasOwnProperty(event.key)) {
         keys[event.key] = false;
     }
+    [player.vel.w, player.vel.a, player.vel.s, player.vel.d] = [0, 0, 0, 0]
 });
 
 // player
@@ -20,6 +22,12 @@ let player = {
     move: game.blocklength / 8,
     color: 'green',
     // exactPosition: (spawn.x+spawn.y*game.w)/game.blocklength
+    vel: {
+        w: 0,
+        a: 0,
+        s: 0,
+        d: 0
+    }
 };
 
 //spawn
@@ -32,34 +40,40 @@ function spawnplayer() {
     drawMap();
     keys = { w: false, a: false, s: false, d: false };
     mapgen = [...allmaps[level]];
+    chasePos = 0
 }
 
 //movement
 function animatecharacter() {
+    ctx.drawImage(characterImage, player.x, player.y, player.size, player.size);
+
     if (keys.w == true) {
-        player.y = player.y - player.move * deltatime;
+        if (player.vel.w < 1) player.vel.w += 0.25;
+        player.y = player.y - player.move * deltatime * player.vel.w;
         player.y = Math.round(player.y);
     }
     if (keys.s == true) {
-        player.y = player.y + player.move * deltatime;
+        if (player.vel.a < 1) player.vel.a += 0.25;
+        player.y = player.y + player.move * deltatime * player.vel.a;
         player.y = Math.round(player.y);
     }
     if (keys.a == true) {
-        player.x = player.x - player.move * deltatime;
+        if (player.vel.s < 1) player.vel.s += 0.25;
+        player.x = player.x - player.move * deltatime * player.vel.s;
         player.x = Math.round(player.x);
     }
     if (keys.d == true) {
-        player.x = player.x + player.move * deltatime;
+        if (player.vel.d < 1) player.vel.d += 0.25;
+        player.x = player.x + player.move * deltatime * player.vel.d;
         player.x = Math.round(player.x);
     }
     // ctx.fillStyle = player.color;
-    ctx.drawImage(characterImage, player.x, player.y, player.size, player.size);
     // player.exactPosition = (player.x+player.y*game.w)/game.blocklength;
 }
 
 //colision logic
 var HitNextLVLOnce = true;
-function checkCollision() {
+function checkCollision() { // For unmoving blocks
     bordcord.minXMinY =
         Math.floor(player.y / game.blocklength) * game.w + Math.floor(player.x / game.blocklength);
     bordcord.minXMaxY =
