@@ -1,38 +1,26 @@
-for (i = 0; i < allLevels.length; i++){
-    console.log(allLevels[i].movingBlocks)
-    allLevels[i].movingBlocks = allLevels[i].movingBlocks.map((element) =>
-        element.map((innerArray) => innerArray.map((coord) => coord[1] * game.w + coord[0]))
-    );
-    allLevels[i].doors = allLevels[i].doors.map((element) =>
-        element.map((innerArray) => innerArray.map((coord) => coord[1] * game.w + coord[0]))
-    );
-    console.log(allLevels[i].movingBlocks)
+for (i = 0; i < allLevels.length; i++) {
+    allLevels[i].movingBlocks = allLevels[i].movingBlocks.map((element) => element.map((coord) => coord[1] * game.w + coord[0]));
+    allLevels[i].doors = allLevels[i].doors.map((element) => element.map((coord) => coord[1] * game.w + coord[0]));
 }
-allblocks = allblocks.map((element) =>
-    element.map((innerArray) => innerArray.map((coord) => coord[1] * game.w + coord[0]))
-);
-alldoors = alldoors.map((element) =>
-    element.map((innerArray) => innerArray.map((coord) => coord[1] * game.w + coord[0]))
-);
 
 // Adds doors to mapgen
-for (var lvl = 0; lvl < allmaps.length; lvl++) {
-    for (var doorcount = 0; doorcount < alldoors[lvl].length; doorcount++) {
-        for (var doorindex = 0; doorindex < alldoors[lvl][doorcount].length; doorindex++) {
+for (var lvl = 0; lvl < allLevels.length; lvl++) {
+    for (var doorcount = 0; doorcount < allLevels[lvl].doors.length; doorcount++) {
+        for (var doorindex = 0; doorindex < allLevels[lvl].doors[doorcount].length; doorindex++) {
             if (doorindex > 0) {
-                allLevels[level].map[alldoors[lvl][doorcount][doorindex]] = 2;
+                allLevels[level].map[allLevels[lvl].doors[doorcount][doorindex]] = 2;
             }
             else {
-                allLevels[level].map[alldoors[lvl][doorcount][doorindex]] = -3;
+                allLevels[level].map[allLevels[lvl].doors[doorcount][doorindex]] = -3;
             }
         }
     }
 }
 
 mapgen = [...allLevels[level].map];
-blockgen = [allLevels[level].movingBlocks];
-addpropgen = [allLevels[level].movingBlocksInfo];
-doorgen = [allLevels[level].doors];
+blockgen = allLevels[level].movingBlocks;
+addpropgen = allLevels[level].movingBlocksInfo;
+doorgen = allLevels[level].doors;
 
 // ctx.scale(32, 32);
 for (var y = 0; y < game.h; y++) {
@@ -154,14 +142,13 @@ function drawMap() {
 drawMap();
 function nextlevel(lvl) {
     console.log('level:' + lvl);
-    spawnplayer();
     posInMovesetArray = [];
     smoother = [];
     exactBlockPosition = [];
     mapgen = [...allLevels[level].map];
-    blockgen = allblocks[level];
-    addpropgen = [allLevels[level].movingBlocksInfo];
-    doorgen = [allLevels[level].doors];
-    console.log(allblocks[level])
+    blockgen = allLevels[level].movingBlocks;
+    addpropgen = allLevels[level].movingBlocksInfo;
+    doorgen = allLevels[level].doors;
     level = lvl;
+    spawnplayer();
 }

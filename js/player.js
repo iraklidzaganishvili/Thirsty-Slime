@@ -39,6 +39,9 @@ function spawnplayer() {
     drawMap();
     keys = { w: false, a: false, s: false, d: false };
     mapgen = [...allLevels[level].map];
+    blockgen = allLevels[level].movingBlocks;
+    addpropgen = allLevels[level].movingBlocksInfo;
+    doorgen = allLevels[level].doors;
     chasePos = 0
 }
 

@@ -1,5 +1,5 @@
 
-for (var i = 0; i < allmaps.length; i++) {
+for (var i = 0; i < allLevels.length; i++) {
     menuLVLBtn = document.createElement('button');
     menuLVLBtn.innerHTML =(i + 1);
     menuLVLBtn.classList.add('lvlbtn');
