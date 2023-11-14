@@ -40,7 +40,7 @@ function gameloop() {
                 Math.round(fps / addpropgen[index].speed) //blockSpeed
             );
         });
-        chase(2, 0.9, 1.5);
+        chase(0, 0.9, 1.5);
         animatecharacter();
         checkCollision();
     }

@@ -1,4 +1,3 @@
-let m
 document.addEventListener("keydown", function (event) {
     if (keys.hasOwnProperty(event.key)) {
         keys[event.key] = true;
@@ -39,7 +38,7 @@ function spawnplayer() {
     player.y = spawn.y;
     drawMap();
     keys = { w: false, a: false, s: false, d: false };
-    mapgen = [...allmaps[level]];
+    mapgen = [...allLevels[level].map];
     chasePos = 0
 }
 
