@@ -29,13 +29,13 @@ var level1 = new Level(
     ],
     [
         { color: "red", speed: 8 },
-        // { color: "red", speed: 8 }
+        { color: "red", speed: 8 }
     ],
     [
-        // [[40, 20], [41, 21], [42, 21]],
+        [[40, 20], [41, 21], [42, 21]],
         [[3, 0], [4, 0]],
     ],
-    [4, 0.1, 0.5]
+    [0, 0.1, 0.5]
 )
 var level2 = new Level(
     [

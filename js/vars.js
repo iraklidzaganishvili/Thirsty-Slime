@@ -69,3 +69,8 @@ let FrameTimeMs;
 
 //select map
 var menuLVLBtn;
+
+let prevPos = {
+    x: [],
+    y: []
+}
