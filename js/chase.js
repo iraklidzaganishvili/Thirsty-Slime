@@ -9,7 +9,7 @@ function chase(amount, minSpeed, maxSpeed) {
             chasePos.x[i] = (Math.floor(Math.random() * 80 * game.blocklength + spawn.x)/2)
             chasePos.y[i] = (Math.floor(Math.random() * 40 * game.blocklength + spawn.y)/2)
             chasePos.speed[i] = Math.random() * (maxSpeed - minSpeed) + minSpeed;
-            console.log(chasePos.speed[i], minSpeed, maxSpeed)
+            // console.log(chasePos.speed[i], minSpeed, maxSpeed)
         }
     }
     for (let i = 0; i < amount; i++) {
