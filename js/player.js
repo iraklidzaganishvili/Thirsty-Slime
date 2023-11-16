@@ -36,6 +36,10 @@ function spawnplayer() {
     ctx.clearRect(player.x, player.y, player.size, player.size);
     player.x = spawn.x
     player.y = spawn.y
+    prevPos = {
+        x:[],
+        y:[]
+    }
     drawMap();
     keys = { w: false, a: false, s: false, d: false };
     mapgen = [...allLevels[level].map];
@@ -47,39 +51,40 @@ function spawnplayer() {
 
 //movement
 ctx.strokeStyle = ctx.createPattern(document.getElementById('particles'), 'repeat')
-ctx.lineWidth = player.size
+ctx.lineWidth = player.size*0.8
+ctx.lineCap = 'round'; // round end points
+ctx.lineJoin = 'round'; // round corners
 function animatecharacter() {
 
     ctx.beginPath()
     ctx.moveTo(prevPos.x[7] + player.size / 2, prevPos.y[7] + player.size / 2)
-    ctx.lineTo(prevPos.x[0] + player.size / 2, prevPos.y[0] + player.size / 2)
+    for (let i = 7; i > 0 ; i--) ctx.lineTo(prevPos.x[i] + player.size / 2, prevPos.y[i] + player.size / 2)
     ctx.stroke()
 
     ctx.drawImage(characterImage, player.x, player.y, player.size, player.size);
-    console.log(player.x, player.y)
 
     if (keys.w == true) {
         if (player.vel.w < 1) player.vel.w += 0.25;
-        player.y.unshift(Math.round(player.y - player.move * deltatime * player.vel.w))
+        player.y = (Math.round(player.y - player.move * deltatime * player.vel.w))
     }
     if (keys.s == true) {
         if (player.vel.a < 1) player.vel.a += 0.25;
-        player.y.unshift(Math.round(player.y + player.move * deltatime * player.vel.a))
+        player.y = (Math.round(player.y + player.move * deltatime * player.vel.a))
     }
     if (keys.a == true) {
         if (player.vel.s < 1) player.vel.s += 0.25;
-        player.x.unshift(Math.round(player.x - player.move * deltatime * player.vel.s))
+        player.x = (Math.round(player.x - player.move * deltatime * player.vel.s))
     }
     if (keys.d == true) {
         if (player.vel.d < 1) player.vel.d += 0.25;
-        player.x.unshift(Math.round(player.x + player.move * deltatime * player.vel.d))
+        player.x = (Math.round(player.x + player.move * deltatime * player.vel.d))
     }
 
     prevPos.x.unshift(player.x)
     prevPos.y.unshift(player.y)
 
-    while (player.x.length > 8) player.x.pop()
-    while (player.y.length > 8) player.y.pop()
+    if (prevPos.x.length > 8) prevPos.x.pop()
+    if (prevPos.y.length > 8) prevPos.y.pop()
     // ctx.fillStyle = player.color;
     // player.exactPosition = (player.x[0]+player.y[0]*game.w)/game.blocklength;
 }
@@ -88,13 +93,13 @@ function animatecharacter() {
 var HitNextLVLOnce = true;
 function checkCollision() { // For unmoving blocks
     bordcord.minXMinY =
-        Math.floor(player.y[0] / game.blocklength) * game.w + Math.floor(player.x[0] / game.blocklength);
+        Math.floor(player.y / game.blocklength) * game.w + Math.floor(player.x / game.blocklength);
     bordcord.minXMaxY =
-        Math.floor(player.y[0] / game.blocklength) * game.w + Math.ceil(player.x[0] / game.blocklength);
+        Math.floor(player.y / game.blocklength) * game.w + Math.ceil(player.x / game.blocklength);
     bordcord.maXXminY =
-        Math.ceil(player.y[0] / game.blocklength) * game.w + Math.floor(player.x[0] / game.blocklength);
+        Math.ceil(player.y / game.blocklength) * game.w + Math.floor(player.x / game.blocklength);
     bordcord.maXXmaxY =
-        Math.ceil(player.y[0] / game.blocklength) * game.w + Math.ceil(player.x[0] / game.blocklength);
+        Math.ceil(player.y / game.blocklength) * game.w + Math.ceil(player.x / game.blocklength);
 
     for (let element in bordcord) {
 

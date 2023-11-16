@@ -1,9 +1,9 @@
 setInterval(() => {
-    // console.clear();
-    // console.table({
-    //     FPS: fpscounter,
-    //     Choose_Level: 'window.level(Level)'
-    // });
+    console.clear();
+    console.table({
+        FPS: fpscounter,
+        Choose_Level: 'window.level(Level)'
+    });
     fpscounter = 0;
 }, 1000);
 function gameloop() {
